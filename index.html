@@ -25,6 +25,7 @@
       <div class="capture-caption"><span>01 / CATCH IT</span><span>Sort it out later.</span></div>
       <button id="btn-snap" class="primary" type="button"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h6l2-4h8l2 4h6v17H4z"/><circle cx="16" cy="18" r="6"/></svg><span>Snap receipt<small>Paper gone. Receipt safe.</small></span><span class="snap-plus" aria-hidden="true">+</span></button>
       <div class="capture-secondary">
+        <button id="btn-files" type="button">From library / files <span aria-hidden="true">↗</span></button>
         <button id="btn-quick" type="button">+ No receipt</button>
       </div>
       <input id="in-snap" type="file" accept="image/*" capture="environment" hidden>
@@ -61,17 +62,6 @@
   </main>
 
   <div id="toast" class="toast" role="status" hidden></div>
-
-  <!-- Capture chooser: Snap receipt opens this (same pattern as the Quick Budget app) -->
-  <dialog id="dlg-capture">
-    <h2>Add a receipt</h2>
-    <p class="hint">Take a photo, or pick one from your photo library or files (PDFs work too).</p>
-    <div class="choose-row">
-      <button type="button" id="btn-camera" class="primary">📷 Camera</button>
-      <button type="button" id="btn-library">🖼️ Library / files</button>
-    </div>
-    <div class="row"><button type="button" id="btn-capture-cancel">Cancel</button></div>
-  </dialog>
 
   <!-- Add / edit -->
   <dialog id="dlg-edit">
