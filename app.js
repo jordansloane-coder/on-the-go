@@ -201,7 +201,7 @@ function rowFor(item) {
     if (miss.length || item.scan === 'failed') {
       const chip = document.createElement('div');
       chip.className = 'item-chip warn';
-      chip.textContent = item.scan === 'failed' && !miss.length ? 'read failed' : 'needs ' + miss.join(', ');
+      chip.textContent = item.scan === 'failed' && !miss.length ? 'read failed' : 'NEEDS: ' + miss.join(', ');
       body.append(chip);
     } else if (item.needsReview) {
       const chip = document.createElement('div');
@@ -217,6 +217,9 @@ function rowFor(item) {
 
   li.append(thumb, body, amt);
   li.tabIndex = 0;
+  li.setAttribute('role', 'button');
+  li.setAttribute('aria-label', `${title.textContent}, ${amt.textContent}. Open details`);
+  li.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEdit(item.id); } };
   li.onclick = () => openEdit(item.id);
   return li;
 }

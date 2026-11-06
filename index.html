@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#111111">
+  <meta name="theme-color" content="#f3efe5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#24221e" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="On The Go">
   <link rel="manifest" href="manifest.json">
@@ -15,42 +16,42 @@
 <body>
   <main id="app">
     <header class="top">
-      <h1>On The Go</h1>
+      <div class="wordmark"><span class="eyebrow">EXPENSE FIELD NOTES</span><h1>On The Go<span aria-hidden="true">↗</span></h1></div>
       <span id="count" class="count"></span>
-      <button id="btn-settings" type="button" class="icon-btn" aria-label="Settings">⚙︎</button>
+      <button id="btn-settings" type="button" class="icon-btn" aria-label="Settings"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3" fill="var(--bg)"/><circle cx="15" cy="17" r="3" fill="var(--bg)"/></svg></button>
     </header>
 
-    <!-- Sticky optional tag applied to everything captured next, e.g. "NYC shoot" -->
-    <label class="label-row">
-      <span>Label</span>
-      <input id="label" type="text" placeholder="optional — e.g. NYC shoot" autocomplete="off">
-    </label>
-
-    <!-- CAPTURE: fastest path possible. No form first. -->
     <section class="capture" aria-label="Capture">
-      <button id="btn-snap" class="primary" type="button">📷 Snap receipt</button>
+      <div class="capture-caption"><span>01 / CATCH IT</span><span>Sort it out later.</span></div>
+      <button id="btn-snap" class="primary" type="button"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h6l2-4h8l2 4h6v17H4z"/><circle cx="16" cy="18" r="6"/></svg><span>Snap receipt<small>Paper gone. Receipt safe.</small></span><span class="snap-plus" aria-hidden="true">+</span></button>
       <div class="capture-secondary">
-        <button id="btn-files" type="button">Add photos / PDFs</button>
+        <button id="btn-files" type="button">Add photos / PDFs <span aria-hidden="true">↗</span></button>
         <button id="btn-quick" type="button">+ No receipt</button>
       </div>
       <input id="in-snap" type="file" accept="image/*" capture="environment" hidden>
       <input id="in-files" type="file" accept="image/*,application/pdf" multiple hidden>
     </section>
 
+    <label class="label-row">
+      <span>STAMP / LABEL</span>
+      <input id="label" type="text" placeholder="Optional, e.g. NYC shoot" autocomplete="off" aria-label="Optional label for new receipts">
+    </label>
+
     <p id="backup-status" class="status" hidden></p>
     <p id="nudge" class="nudge" hidden></p>
 
-    <section aria-label="Pile">
+    <section class="pile" aria-label="Pile"><div class="section-heading"><h2>02 / THE PILE</h2><span>Tap to fill in the blanks</span></div>
       <ul id="list" class="list"></ul>
-      <p id="empty" class="empty" hidden>Nothing in the pile. Snap something.</p>
+      <p id="empty" class="empty" hidden><span class="empty-mark" aria-hidden="true">↓</span><strong>Catch it. Keep moving.</strong>Your next receipt goes here.<br>Snap now, add the details later.</p>
     </section>
 
     <section id="offload" class="offload" hidden>
       <label>
-        Offload
+        03 / OFFLOAD
         <select id="export-filter"></select>
       </label>
-      <button id="btn-export" class="primary" type="button">Export CSV + receipts (.zip)</button>
+      <button id="btn-export" class="primary" type="button">Offload the pile ↗</button>
+      <p class="offload-note">CSV + receipt files, zipped for accounting.</p>
     </section>
 
     <details id="exported" class="exported" hidden>
@@ -60,12 +61,12 @@
     </details>
   </main>
 
-  <div id="toast" class="toast" hidden></div>
+  <div id="toast" class="toast" role="status" hidden></div>
 
   <!-- Add / edit -->
   <dialog id="dlg-edit">
     <form method="dialog" id="form-edit">
-      <h2 id="edit-title">Details</h2>
+      <h2 id="edit-title">Details</h2><p id="edit-missing" class="missing-note" aria-live="polite" hidden></p>
       <img id="edit-photo" alt="" hidden>
       <p id="edit-scan" class="scan-note" hidden></p>
       <label>Vendor <input id="f-vendor" type="text" autocomplete="off"></label>
@@ -81,8 +82,8 @@
       </div>
       <label>Label <input id="f-label" type="text" autocomplete="off"></label>
       <label>Note <textarea id="f-note" rows="2" placeholder="What was this for?"></textarea></label>
-      <p id="edit-missing" class="missing-note" hidden></p>
-      <div class="row">
+
+      <div class="row edit-actions">
         <button type="button" id="btn-delete" class="danger">Delete</button>
         <button type="button" id="btn-reread" hidden>Re-read</button>
         <button type="button" id="btn-cancel">Close</button>
