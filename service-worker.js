@@ -1,5 +1,5 @@
 // Offline shell. Bump CACHE when shipping changes so phones pick them up.
-const CACHE = 'on-the-go-v3';
+const CACHE = 'on-the-go-v4';
 const SHELL = [
   './', 'index.html', 'style.css', 'app.js', 'db.js', 'scan.js', 'backup.js', 'export.js',
   'manifest.json', 'icons/icon.svg', 'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon-512.png',
