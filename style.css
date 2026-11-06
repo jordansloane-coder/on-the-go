@@ -547,3 +547,9 @@ body { padding-bottom: calc(env(safe-area-inset-bottom) + 290px); }
 .label-row { margin: 16px 0; }
 .toast { bottom: calc(env(safe-area-inset-bottom) + 255px); }
 @media (max-width: 390px) { .capture { padding-left:16px; padding-right:16px; } }
+
+/* capture chooser */
+.capture-secondary button:first-child { border-right: 0; flex: 1; }
+#dlg-capture .choose-row { display: flex; gap: 10px; margin: 12px 0; }
+#dlg-capture .choose-row button { flex: 1; min-height: 72px; font-size: 16px; }
+#dlg-capture .choose-row button { display: flex; align-items: center; justify-content: center; gap: 8px; }

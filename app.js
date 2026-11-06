@@ -121,8 +121,11 @@ async function addFiles(fileList) {
   runScanQueue();
 }
 
-$('btn-snap').onclick = () => $('in-snap').click();
-$('btn-files').onclick = () => $('in-files').click();
+// Snap opens a Camera / Library chooser. input.click() must run inside the tap handler for iOS.
+$('btn-snap').onclick = () => $('dlg-capture').showModal();
+$('btn-camera').onclick = () => { $('in-snap').click(); $('dlg-capture').close(); };
+$('btn-library').onclick = () => { $('in-files').click(); $('dlg-capture').close(); };
+$('btn-capture-cancel').onclick = () => $('dlg-capture').close();
 for (const id of ['in-snap', 'in-files']) {
   $(id).onchange = async (e) => {
     await addFiles(e.target.files);
